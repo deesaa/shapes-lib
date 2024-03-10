@@ -10,8 +10,8 @@ namespace ShapeLibTests
 
         private const float Tolerance = 0.001f; 
 
-        private const float TriangleEdge = 3f; 
-        private const float TriangleAreaExpected = 3.897f; 
+        private const float TriangleEdge = 5f; 
+        private const float TriangleAreaExpected = 12.5f; 
     
         private const float CircleRadius = 5f; 
         private const float CircleAreaExpected = 78.53982f; 
@@ -44,6 +44,15 @@ namespace ShapeLibTests
         }
         
         [Test]
+        public void IsTriangleRight()
+        {
+            var operation = new ShapeOperationRightTriangleCheck();
+            operation.ExecuteOn(_triangleShape);
+            var isRight  = (bool)operation.Result;
+            Assert.That(isRight, Is.True);
+        }
+        
+        [Test]
         public void CanExecuteAreaOnShapes()
         {
             var operation = new ShapeOperationArea();
@@ -54,7 +63,7 @@ namespace ShapeLibTests
         }
         
         [Test]
-        public void CanExecuteRightTriangleOnShapes()
+        public void CanExecuteEquilateralTriangleOnShapes()
         {
             var operation = new ShapeOperationEquilateralTriangleCheck();
             var canExecuteOnCircle = operation.CanExecuteOn(_circleShape);
