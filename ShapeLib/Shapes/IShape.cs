@@ -1,6 +1,6 @@
 namespace ShapeLib
 {
-    public interface IShape
+    public interface IShape : IArea
     {
         public string ShapeName { get; }
         public IReadOnlyDictionary<string, ShapeParameter> ShapeParametersScheme { get; }

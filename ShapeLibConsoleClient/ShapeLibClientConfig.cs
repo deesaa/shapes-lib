@@ -11,4 +11,13 @@ public static class ShapeLibClientConfig
         factory.AddShape<ShapeCircle>();
         return factory;
     }
+    
+    public static ShapeOperations CreateOperationsFactory()
+    {
+        var operations = new ShapeOperations();
+        operations.AddOperation<ShapeOperationArea>();
+        operations.AddOperation<ShapeOperationRightTriangleCheck>();
+        operations.AddOperation<ShapeOperationEquilateralTriangleCheck>();
+        return operations;
+    }
 }
