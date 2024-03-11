@@ -9,18 +9,18 @@ namespace ShapeLib
             { RadiusKey, new ShapeParameter(0, ValidGreaterThan.Zero)} 
         };  
         
-        private float _radius;
-        private float _area;
+        private double _radius;
+        private double _area;
         
         public IReadOnlyDictionary<string, ShapeParameter> ShapeParametersScheme => Scheme;
         public string ShapeName => GetType().Name;
         
-        public void SetParameters(Dictionary<string, float> shapeParameters)
+        public void SetParameters(Dictionary<string, double> shapeParameters)
         {
             _radius = shapeParameters[RadiusKey];
             _area = MathF.PI * _radius * _radius;
         }
 
-        public float GetArea() => _area;
+        public double GetArea() => _area;
     }
 }

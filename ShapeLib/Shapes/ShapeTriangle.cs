@@ -15,25 +15,25 @@ public class ShapeTriangle : IShape, ITriangle
         { SideSizeBKey, new ShapeParameter(0, ValidGreaterThan.Zero) },
     };
 
-    private float _sideSizeA;
-    private float _sideSizeB;
-    private float _sideSizeC;
+    private double _sideSizeA;
+    private double _sideSizeB;
+    private double _sideSizeC;
     
-    private float _area;
+    private double _area;
     private bool _isRightTriangle;
     private bool _isEquilateralTriangle;
     
     public string ShapeName => GetType().Name;
     public IReadOnlyDictionary<string, ShapeParameter> ShapeParametersScheme => Scheme;
 
-    public void SetParameters(Dictionary<string, float> parameters)
+    public void SetParameters(Dictionary<string, double> parameters)
     {
         _sideSizeA = parameters[SideSizeAKey];
         _sideSizeB = parameters[SideSizeBKey];
-        _sideSizeC = MathF.Sqrt(_sideSizeA * _sideSizeA + _sideSizeB * _sideSizeB);
+        _sideSizeC = Math.Sqrt(_sideSizeA * _sideSizeA + _sideSizeB * _sideSizeB);
         
         var p = (_sideSizeA + _sideSizeB + _sideSizeC) / 2;
-        _area = MathF.Sqrt(p * (p - _sideSizeA) * (p - _sideSizeB) * (p - _sideSizeC));
+        _area = Math.Sqrt(p * (p - _sideSizeA) * (p - _sideSizeB) * (p - _sideSizeC));
         
         _isEquilateralTriangle = Math.Abs(_sideSizeA - _sideSizeB) < Tolerance &&
                                  Math.Abs(_sideSizeB - _sideSizeC) < Tolerance && 
@@ -47,7 +47,7 @@ public class ShapeTriangle : IShape, ITriangle
                            Tolerance;
     }
     
-    public float GetArea() => _area;
+    public double GetArea() => _area;
     public bool IsRightTriangle() => _isRightTriangle;
     public bool IsEquilateralTriangle() => _isEquilateralTriangle;
 }

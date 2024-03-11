@@ -2,6 +2,6 @@ namespace ShapeLib
 {
     public interface IArea
     {
-        public float GetArea();
+        public double GetArea();
     }
 }

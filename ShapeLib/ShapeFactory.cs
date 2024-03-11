@@ -13,7 +13,7 @@ namespace ShapeLib
         public class ShapeBuilder
         {
             private IShape _newShape;
-            private Dictionary<string, float> _newValues;
+            private Dictionary<string, double> _newValues;
             
             private int _parametersToSet;
             public string ShapeName => _newShape.ShapeName;
@@ -34,7 +34,7 @@ namespace ShapeLib
                 }
             }
 
-            private void OnNewParameterSet(string key, float value)
+            private void OnNewParameterSet(string key, double value)
             {
                 _newShape.ShapeParametersScheme[key].Validation.ThrowIfNotValid(value);
                 
@@ -55,15 +55,15 @@ namespace ShapeLib
         public class ShapeParameterSetter
         {
             public string ParameterName { get; set; }
-            private Action<float> _valueSetObserver;
+            private Action<double> _valueSetObserver;
 
-            internal ShapeParameterSetter(string parameterName, Action<float> valueSetObserver)
+            internal ShapeParameterSetter(string parameterName, Action<double> valueSetObserver)
             {
                 ParameterName = parameterName;
                 _valueSetObserver = valueSetObserver;
             }
 
-            public void Set(float newValue)
+            public void Set(double newValue)
             {
                 _valueSetObserver(newValue);
             }

@@ -7,14 +7,19 @@ namespace ShapeLibTests
         private ShapeFactory _factory;
         private IShape _circleShape;
         private IShape _triangleShape;
+        private IShape _notRightTriangleShape;
 
         private const float Tolerance = 0.001f; 
 
-        private const float TriangleEdge = 5f; 
-        private const float TriangleAreaExpected = 12.5f; 
+        private const float RightTriangleEdge1 = 3f; 
+        private const float RightTriangleEdge2 = 4f; 
+        private const float TriangleAreaExpected = 6f; 
     
         private const float CircleRadius = 5f; 
         private const float CircleAreaExpected = 78.53982f; 
+        
+        private const float NotRightTriangleEdge1 = 15f; 
+        private const float NotRightTriangleEdge2 = 30f; 
     
         [SetUp]
         public void Setup()
@@ -24,14 +29,21 @@ namespace ShapeLibTests
             _factory.AddShape<ShapeCircle>();
         
             var shapeBuilder = _factory.BeginNewShape(typeof(ShapeTriangle));
-            foreach (var shapeParameterSetter in shapeBuilder.ParameterSetters())
-                shapeParameterSetter.Set(TriangleEdge);
+            var parameters = shapeBuilder.ParameterSetters().ToList();
+            parameters[0].Set(RightTriangleEdge1);
+            parameters[1].Set(RightTriangleEdge2);
             _triangleShape = shapeBuilder.EndNewShape();
         
             shapeBuilder = _factory.BeginNewShape(typeof(ShapeCircle));
             foreach (var shapeParameterSetter in shapeBuilder.ParameterSetters())
                 shapeParameterSetter.Set(CircleRadius);
             _circleShape = shapeBuilder.EndNewShape();
+            
+            shapeBuilder = _factory.BeginNewShape(typeof(ShapeTriangle));
+            parameters = shapeBuilder.ParameterSetters().ToList();
+            parameters[0].Set(NotRightTriangleEdge1);
+            parameters[1].Set(NotRightTriangleEdge2);
+            _notRightTriangleShape = shapeBuilder.EndNewShape();
         }
     
         [Test]
@@ -39,7 +51,7 @@ namespace ShapeLibTests
         {
             var operation = new ShapeOperationArea();
             operation.ExecuteOn(_circleShape);
-            var area = (float)operation.Result;
+            var area = (double)operation.Result;
             Assert.That(area, Is.EqualTo(CircleAreaExpected).Within(Tolerance));
         }
         
@@ -50,6 +62,15 @@ namespace ShapeLibTests
             operation.ExecuteOn(_triangleShape);
             var isRight  = (bool)operation.Result;
             Assert.That(isRight, Is.True);
+        }
+        
+        [Test]
+        public void IsTriangleNotRight()
+        {
+            var operation = new ShapeOperationRightTriangleCheck();
+            operation.ExecuteOn(_notRightTriangleShape);
+            var isRight  = (bool)operation.Result;
+            Assert.That(isRight, Is.False);
         }
         
         [Test]
@@ -77,7 +98,7 @@ namespace ShapeLibTests
         {
             var operation = new ShapeOperationArea();
             operation.ExecuteOn(_triangleShape);
-            var area = (float)operation.Result;
+            var area = (double)operation.Result;
             Assert.That(area, Is.EqualTo(TriangleAreaExpected).Within(Tolerance));
         }
     }
