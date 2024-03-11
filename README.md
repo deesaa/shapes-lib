@@ -10,6 +10,13 @@ Library for creating different geometry shapes and performing operations over th
 
 > `ShapesLibTests`: Unit tests for core library
 # How To:
+
+## Fast Check
+
+> Clone repository -> open `ShapesLibConsoleClient` project in solution -> run client application
+
+> Or run `ShapeLibConsoleClient.exe` in Release folder in `ShapesLibConsoleClient` project
+
 ## Initialize
 Init ShapeFactory and ShapeOperationsFactory
 ```c#

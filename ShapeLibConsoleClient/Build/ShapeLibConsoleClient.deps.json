@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "ShapeLibConsoleClient/1.0.0": {
+        "dependencies": {
+          "ShapeLib": "1.0.0"
+        },
+        "runtime": {
+          "ShapeLibConsoleClient.dll": {}
+        }
+      },
+      "ShapeLib/1.0.0": {
+        "runtime": {
+          "ShapeLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ShapeLibConsoleClient/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShapeLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
