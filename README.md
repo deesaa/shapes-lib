@@ -15,7 +15,7 @@ Library for creating different geometry shapes and performing operations over th
 
 > Clone repository -> open `ShapesLibConsoleClient` project in solution -> run client application
 
-> Or run `ShapeLibConsoleClient.exe` in Release folder in `ShapesLibConsoleClient` project
+> Or run `ShapeLibConsoleClient.exe` in Build folder in `ShapesLibConsoleClient` project
 
 ## Initialize
 Init ShapeFactory and ShapeOperationsFactory
