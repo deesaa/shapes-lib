@@ -4,19 +4,21 @@ namespace ShapeLib
     {
         public void Run()
         {
-            var factory = new ShapeFactory();
-            factory.AddShape<ShapeTriangle>();
-            factory.AddShape<ShapeCircle>();
-            
-            var operations = new ShapeOperations();
+            var shapes = new ShapeFactory();
+            var operations = new ShapeOperationsFactory();
             operations.AddOperation<ShapeOperationEquilateralTriangleCheck>();
+
+            
+            shapes.AddShape<ShapeTriangle>();
+            shapes.AddShape<ShapeCircle>();
             operations.AddOperation<ShapeOperationArea>();
             
-            var triangleBuilder = factory.BeginNewShape(typeof(ShapeTriangle));
+            
+            var triangleBuilder = shapes.BeginNewShape(typeof(ShapeTriangle));
             foreach (var shapeParameterSetter in triangleBuilder.ParameterSetters())
                 shapeParameterSetter.Set(3);
 
-            var triangleShape = triangleBuilder.EndNewShape();
+            IShape triangleShape = triangleBuilder.EndNewShape();
 
             var availableOperations = operations.AvailableFor(triangleShape).ToList();
 
@@ -27,7 +29,7 @@ namespace ShapeLib
             IShapeOperation operation = operations.GetOperation(typeof(ShapeOperationArea));
             operation.ExecuteOn(triangleShape);
             var result = (int)operation.Result;
-
+            Console.WriteLine($"Result is {operation.Result}");
         }
     }
 }

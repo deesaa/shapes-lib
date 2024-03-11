@@ -1,6 +1,6 @@
 namespace ShapeLib
 {
-    public class ShapeOperations
+    public class ShapeOperationsFactory
     {
         private Dictionary<Type, OperationFactoryData> _shapeOperationFactories = new();
 

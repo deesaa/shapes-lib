@@ -12,9 +12,9 @@ public static class ShapeLibClientConfig
         return factory;
     }
     
-    public static ShapeOperations CreateOperationsFactory()
+    public static ShapeOperationsFactory CreateOperationsFactory()
     {
-        var operations = new ShapeOperations();
+        var operations = new ShapeOperationsFactory();
         operations.AddOperation<ShapeOperationArea>();
         operations.AddOperation<ShapeOperationRightTriangleCheck>();
         operations.AddOperation<ShapeOperationEquilateralTriangleCheck>();

@@ -4,7 +4,7 @@ using ShapeLibConsoleClient;
 public class ShapeLibClient
 {
     private ShapeFactory _shapes;
-    private ShapeOperations _operations;
+    private ShapeOperationsFactory _operationsFactory;
     
     private IShape _currentShape;
     private Type _currentShapeType;
@@ -12,7 +12,7 @@ public class ShapeLibClient
     public ShapeLibClient()
     {
         _shapes = ShapeLibClientConfig.CreateShapeFactory();
-        _operations = ShapeLibClientConfig.CreateOperationsFactory();
+        _operationsFactory = ShapeLibClientConfig.CreateOperationsFactory();
         CreateShape();
     }
 
@@ -51,7 +51,7 @@ public class ShapeLibClient
     
     public object OperationOverShape()
     {
-        var operationList = _operations.AvailableFor(_currentShape).ToList();
+        var operationList = _operationsFactory.AvailableFor(_currentShape).ToList();
         IShapeOperation selectedOperation = null;
 
         while (true)
@@ -79,7 +79,7 @@ public class ShapeLibClient
                 continue;
             }
 
-            selectedOperation = _operations.GetOperation(operationList[selectedOperationIndex]);
+            selectedOperation = _operationsFactory.GetOperation(operationList[selectedOperationIndex]);
             break;
         }
 
