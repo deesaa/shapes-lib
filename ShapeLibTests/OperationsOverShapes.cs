@@ -9,17 +9,19 @@ namespace ShapeLibTests
         private IShape _triangleShape;
         private IShape _notRightTriangleShape;
 
-        private const float Tolerance = 0.001f; 
-
-        private const float RightTriangleEdge1 = 3f; 
-        private const float RightTriangleEdge2 = 4f; 
-        private const float TriangleAreaExpected = 6f; 
+        private const double RightTriangleEdge1 = 3d; 
+        private const double RightTriangleEdge2 = 4d; 
+        private const double RightTriangleAngle = 90d; 
+        private const double TriangleAreaExpected = 6d; 
     
-        private const float CircleRadius = 5f; 
-        private const float CircleAreaExpected = 78.53982f; 
+        private const double CircleRadius = 5d; 
+        private const double CircleAreaExpected = 78.5398163397d; 
+        private const double Tolerance = 0.00001d; 
+
         
-        private const float NotRightTriangleEdge1 = 15f; 
-        private const float NotRightTriangleEdge2 = 30f; 
+        private const double NotRightTriangleEdge1 = 3d; 
+        private const double NotRightTriangleEdge2 = 4d; 
+        private const double NotRightTriangleAngle = 89d; 
     
         [SetUp]
         public void Setup()
@@ -28,21 +30,34 @@ namespace ShapeLibTests
             _factory.AddShape<ShapeTriangle>();
             _factory.AddShape<ShapeCircle>();
         
+            //Triangle
             var shapeBuilder = _factory.BeginNewShape(typeof(ShapeTriangle));
-            var parameters = shapeBuilder.ParameterSetters().ToList();
-            parameters[0].Set(RightTriangleEdge1);
-            parameters[1].Set(RightTriangleEdge2);
+            var parameters = shapeBuilder
+                .ParameterSetters()
+                .ToDictionary(x => x.ParameterName, x => x);
+            
+            parameters[ShapeTriangle.SideSizeAKey].Set(RightTriangleEdge1);
+            parameters[ShapeTriangle.SideSizeBKey].Set(RightTriangleEdge2);
+            parameters[ShapeTriangle.AngleDegreesAB].Set(RightTriangleAngle);
             _triangleShape = shapeBuilder.EndNewShape();
         
+            //Circle
             shapeBuilder = _factory.BeginNewShape(typeof(ShapeCircle));
-            foreach (var shapeParameterSetter in shapeBuilder.ParameterSetters())
-                shapeParameterSetter.Set(CircleRadius);
+            parameters = shapeBuilder
+                .ParameterSetters()
+                .ToDictionary(x => x.ParameterName, x => x);
+            parameters[ShapeCircle.RadiusKey].Set(CircleRadius);
             _circleShape = shapeBuilder.EndNewShape();
             
+            //Triangle
             shapeBuilder = _factory.BeginNewShape(typeof(ShapeTriangle));
-            parameters = shapeBuilder.ParameterSetters().ToList();
-            parameters[0].Set(NotRightTriangleEdge1);
-            parameters[1].Set(NotRightTriangleEdge2);
+            parameters = shapeBuilder
+                .ParameterSetters()
+                .ToDictionary(x => x.ParameterName, x => x);
+            
+            parameters[ShapeTriangle.SideSizeAKey].Set(NotRightTriangleEdge1);
+            parameters[ShapeTriangle.SideSizeBKey].Set(NotRightTriangleEdge2);
+            parameters[ShapeTriangle.AngleDegreesAB].Set(NotRightTriangleAngle);
             _notRightTriangleShape = shapeBuilder.EndNewShape();
         }
     

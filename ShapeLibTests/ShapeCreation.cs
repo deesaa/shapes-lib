@@ -23,7 +23,7 @@ namespace ShapeLibTests
         [Test]
         public void GetTriangleParametersCount()
         {
-            int targetCount = 2;
+            int targetCount = 3;
         
             var triangleBuilder = _factory.BeginNewShape(typeof(ShapeTriangle));
             int count = triangleBuilder.ParameterSetters().Count();

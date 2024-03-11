@@ -2,7 +2,7 @@ namespace ShapeLib
 {
     public class ShapeCircle : IShape
     {
-        private const string RadiusKey = "Radius";
+        public const string RadiusKey = "Radius";
         
         private static readonly Dictionary<string, ShapeParameter> Scheme = new() 
         {
@@ -18,7 +18,7 @@ namespace ShapeLib
         public void SetParameters(Dictionary<string, double> shapeParameters)
         {
             _radius = shapeParameters[RadiusKey];
-            _area = MathF.PI * _radius * _radius;
+            _area = Math.PI * _radius * _radius;
         }
 
         public double GetArea() => _area;

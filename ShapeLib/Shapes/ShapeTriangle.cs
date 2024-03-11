@@ -2,17 +2,19 @@
 
 namespace ShapeLib;
 
-public class ShapeTriangle : IShape, ITriangle
+public class ShapeTriangle : ITriangle
 {
-    private const float Tolerance = float.Epsilon;
+    private const double Tolerance = 0.00001d;
     
-    private const string SideSizeAKey = "Length of the side A";
-    private const string SideSizeBKey = "Length of the side B";
+    public const string SideSizeAKey = "Length of the side A";
+    public const string SideSizeBKey = "Length of the side B";
+    public const string AngleDegreesAB = "Angle between A and B in degrees";
     
     private static readonly Dictionary<string, ShapeParameter> Scheme = new() 
     {
         { SideSizeAKey, new ShapeParameter(0, ValidGreaterThan.Zero)},
         { SideSizeBKey, new ShapeParameter(0, ValidGreaterThan.Zero) },
+        { AngleDegreesAB, new ShapeParameter(0, ValidInRange.Range0To180) },
     };
 
     private double _sideSizeA;
@@ -30,7 +32,11 @@ public class ShapeTriangle : IShape, ITriangle
     {
         _sideSizeA = parameters[SideSizeAKey];
         _sideSizeB = parameters[SideSizeBKey];
-        _sideSizeC = Math.Sqrt(_sideSizeA * _sideSizeA + _sideSizeB * _sideSizeB);
+
+        double angleDegrees = parameters[AngleDegreesAB];
+        double radians = (Math.PI / 180) * angleDegrees;
+        var x = 2 * _sideSizeA * _sideSizeB * Math.Cos(radians);
+        _sideSizeC = Math.Sqrt(_sideSizeA * _sideSizeA + _sideSizeB * _sideSizeB - x);
         
         var p = (_sideSizeA + _sideSizeB + _sideSizeC) / 2;
         _area = Math.Sqrt(p * (p - _sideSizeA) * (p - _sideSizeB) * (p - _sideSizeC));

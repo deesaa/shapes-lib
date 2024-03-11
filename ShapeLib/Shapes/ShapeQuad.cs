@@ -1,9 +1,9 @@
 namespace ShapeLib
 {
-    public class ShapeQuad : IShape, IArea
+    public class ShapeQuad : IShape
     {
-        private const string SideA = "SideA";
-        private const string SideB = "SideB";
+        public const string SideA = "SideA";
+        public const string SideB = "SideB";
         
         private static readonly Dictionary<string, ShapeParameter> Scheme = new() 
         {
