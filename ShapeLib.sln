@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeLibConsoleClient", "Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeLibTests", "ShapeLibTests\ShapeLibTests.csproj", "{E2A91BFE-F9B2-40B3-872E-D56E940722C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsBase", "ProductsBase\ProductsBase.csproj", "{AA91C346-83DF-4AC4-B912-8E088FC9B51D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E2A91BFE-F9B2-40B3-872E-D56E940722C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2A91BFE-F9B2-40B3-872E-D56E940722C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2A91BFE-F9B2-40B3-872E-D56E940722C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA91C346-83DF-4AC4-B912-8E088FC9B51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA91C346-83DF-4AC4-B912-8E088FC9B51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA91C346-83DF-4AC4-B912-8E088FC9B51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA91C346-83DF-4AC4-B912-8E088FC9B51D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
